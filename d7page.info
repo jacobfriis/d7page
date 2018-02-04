@@ -1,0 +1,6 @@
+name = "d7page"
+description = "test"
+package = development
+
+core = 7.x
+project = d7page

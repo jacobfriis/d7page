@@ -1,0 +1,151 @@
+<?php
+/**
+ * @file
+ *  Drupal d7page module
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function d7page_enable() {
+  module_load_include('inc', 'd7page', 'D7Page');
+  (new D7Page())->moduleEnable();
+}
+
+/**
+ * Database model.
+ *
+ * Implements hook_schema().
+ *
+ * @return array
+ */
+function d7page_schema() {
+  return [
+    'd7page_lodging' => [
+      'description' => 'Lodgings',
+      'fields' => [
+        'id' => [
+          'type' => 'varchar',
+          'length' => 32,
+          'not null' => true,
+        ],
+        'headline' => [
+          'type' => 'varchar',
+          'length' => 128,
+          'not null' => true,
+          'default' => '',
+        ],
+        'beds' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'propertyTypeName' => [
+          'type' => 'varchar',
+          'length' => 64,
+          'not null' => true,
+          'default' => '',
+        ],
+        'countryName' => [
+          'type' => 'varchar',
+          'length' => 64,
+          'not null' => true,
+          'default' => '',
+        ],
+        'price' => [
+          'type' => 'int',
+          'size' => 'medium',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'propertySize' => [
+          'type' => 'int',
+          'size' => 'medium',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'distanceShop' => [
+          'type' => 'int',
+          'size' => 'medium',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'distanceWater' => [
+          'type' => 'int',
+          'size' => 'medium',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'propertyType' => [
+          'type' => 'varchar',
+          'length' => 64,
+          'not null' => true,
+          'default' => '',
+        ],
+        'bathrooms' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'bedrooms' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'score' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'pets' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'rating' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'adults' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'children' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+        'country' => [
+          'type' => 'int',
+          'size' => 'medium',
+          'unsigned' => true,
+          'not null' => true,
+          'default' => 0,
+        ],
+      ],
+      'primary key' => ['id'],
+    ],
+  ];
+}

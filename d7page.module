@@ -1,0 +1,49 @@
+<?php
+/**
+ * @file
+ *  Drupal d7page module
+ */
+
+/**
+ * Tell which blocks the module provides.
+ *
+ * Implements hook_block_info().
+ *
+ * @see D7Page::blockInfo()
+ *
+ * @return array
+ */
+function d7page_block_info() {
+  module_load_include('inc', 'd7page', 'D7Page');
+  return D7Page::blockInfo();
+}
+
+/**
+ * Creates title and content of a block.
+ *
+ * Implements hook_block_view().
+ *
+ * @see RelationEditorBlock::hook_block_view()
+ *
+ * @param string $delta
+ *    Empty or 'list': build lodging list.
+ *    Otherwise a lodging, or fallback if doesn't exist.
+ *
+ * @return array
+ */
+function d7page_block_view($delta) {
+  static $instance;
+  if (!$instance) {
+    module_load_include('inc', 'd7page', 'D7Page');
+    $instance = new D7Page();
+  }
+  if ($delta == 'd7page_list') {
+    return $instance->blockListView();
+  }
+
+  $query = drupal_get_query_parameters();
+  if (!$query || empty($query['d7page-lodging'])) {
+    return [];
+  }
+  return $instance->blockEntryView($query['d7page-lodging']);
+}
